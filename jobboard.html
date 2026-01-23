@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Job Board</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav button {
+            margin: 5px;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .job {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>JOB BOARD</h1>
+        <nav>
+            <button onclick="showSection('home')">Home</button>
+            <button onclick="showSection('jobs')">Jobs</button>
+            <button onclick="showSection('employer')">Employer</button>
+            <button onclick="showSection('candidate')">Candidate</button>
+        </nav>
+    </header>
+
+    <!-- HOME -->
+    <div id="home" class="section active">
+        <h2>Welcome to Job Board</h2>
+        <p>Find jobs or post job openings easily.</p>
+    </div>
+
+    <!-- JOB LIST -->
+    <div id="jobs" class="section">
+        <h2>Job Listings</h2>
+
+        <input type="text" id="search" placeholder="Search jobs..." onkeyup="searchJobs()">
+
+        <div class="job">
+            <h3>Web Developer</h3>
+            <p>Location: Remote</p>
+            <button onclick="showSection('details')">View Details</button>
+        </div>
+
+        <div class="job">
+            <h3>Python Developer</h3>
+            <p>Location: Hyderabad</p>
+            <button onclick="showSection('details')">View Details</button>
+        </div>
+    </div>
+
+    <!-- JOB DETAILS -->
+    <div id="details" class="section">
+        <h2>Job Details</h2>
+        <p>Company: ABC Tech</p>
+        <p>Skills: HTML, CSS, JavaScript</p>
+        <p>Salary: ₹30,000/month</p>
+        <button onclick="showSection('apply')">Apply Now</button>
+    </div>
+
+    <!-- APPLY FORM -->
+    <div id="apply" class="section">
+        <h2>Apply for Job</h2>
+        <form>
+            <input type="text" placeholder="Name" required><br><br>
+            <input type="email" placeholder="Email" required><br><br>
+            <input type="file"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- EMPLOYER DASHBOARD -->
+    <div id="employer" class="section">
+        <h2>Employer Dashboard</h2>
+        <form>
+            <input type="text" placeholder="Job Title"><br><br>
+            <input type="text" placeholder="Location"><br><br>
+            <textarea placeholder="Job Description"></textarea><br><br>
+            <button>Post Job</button>
+        </form>
+    </div>
+
+    <!-- CANDIDATE DASHBOARD -->
+    <div id="candidate" class="section">
+        <h2>Candidate Dashboard</h2>
+        <p>Name: Shailesh Gandham</p>
+        <p>Applied Jobs:</p>
+        <ul>
+            <li>Web Developer</li>
+            <li>Python Developer</li>
+        </ul>
+    </div>
+
+    <script>
+        function showSection(id) {
+            let sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function searchJobs() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let jobs = document.querySelectorAll(".job");
+
+            jobs.forEach(job => {
+                job.style.display =
+                    job.innerText.toLowerCase().includes(input) ? "block" : "none";
+            });
+        }
+    </script>
+
+</body>
+
+</html>
